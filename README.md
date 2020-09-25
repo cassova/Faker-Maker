@@ -1,5 +1,31 @@
 # Faker-Maker
-This module creates fake pandas dataframes using a custom domain specific language
+This module creates fake pandas dataframes using a IPython magic function with custom domain specific language.
+
+## Example usage
+```
+%%fakedata seed=2, lang=jp_JP
+# This is an improved version that supports comments
+persons {10}
+-----------------------
+first_name  #This is a comment
+last_name*  #Every lastname in the dataset will be unique
+phone_number
+#test('first',2=2,third=3,4)
+random_number(digits=5) as customer_number [1]*
+
+purchases     # I've also improved it to include an optional size
+---------
+isbn10
+credit_card_full
+random_number(digits=3) as price
+random_number(digits=5) as customer_number [1,2]  # this reference says it's a child of persons and parent of comments
+
+comments {2000}
+---------
+text(max_nb_chars=280) as comment
+random_number(digits=5) as customer_number [2]
+```
+See also example.ipynb
 
 ## The `FakeDataFrameBuilder` class
 The heavy lifter for this assignment is named `FakeDataFrameBuilder`.  It resides in the file `faker_maker.py`.  It is designed to be used as the magic function `%%fakedata` which is demonstrated in this notebook.  Using it as a class instead of a magic function is also possible.  Create an instance of it as such:
