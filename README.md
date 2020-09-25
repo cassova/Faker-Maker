@@ -4,23 +4,22 @@ This module creates fake pandas dataframes using a IPython magic function with c
 ## Example usage
 ```
 %%fakedata seed=2, lang=jp_JP
-# This is an improved version that supports comments
+# This will create 3 pandas dataframes: persons, purchases and comments
 persons {10}
 -----------------------
-first_name  #This is a comment
-last_name*  #Every lastname in the dataset will be unique
+first_name  #This is the Faker.first_name function which generates fake names
+last_name*  #Every lastname in this dataset will be unique
 phone_number
-#test('first',2=2,third=3,4)
-random_number(digits=5) as customer_number [1]*
+random_number(digits=5) as customer_number [1]* #The customer number in this dataset will be reused in purchases
 
-purchases     # I've also improved it to include an optional size
+purchases
 ---------
 isbn10
 credit_card_full
 random_number(digits=3) as price
 random_number(digits=5) as customer_number [1,2]  # this reference says it's a child of persons and parent of comments
 
-comments {2000}
+comments {2000} # This dataset will have 2000 rows (default = 99)
 ---------
 text(max_nb_chars=280) as comment
 random_number(digits=5) as customer_number [2]
