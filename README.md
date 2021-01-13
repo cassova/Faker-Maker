@@ -121,6 +121,3 @@ The seed can now be set on the magic function call line using the syntax `seed=0
 
 ### Language
 The language can also be defined on the magic function line using the syntax `lang=jp_JP`.
- 
-### Notes
-This was created by Nicholas Miller (miller.nicholas.a@gmail.com) based on specifications from Prof. Christopher Brooks (brooksch@umich.edu).
