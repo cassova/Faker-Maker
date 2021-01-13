@@ -2,7 +2,7 @@
 This module creates pandas dataframes filled with fake data from the `Faker` package using an IPython magic function with custom domain specific language.
 
 ## Installation
-`pip install faker-maker`
+`pip install fakermaker`
 
 ## Example usage
 
