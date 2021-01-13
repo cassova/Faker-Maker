@@ -1,9 +1,21 @@
 # Faker-Maker
-This module creates fake pandas dataframes using a IPython magic function with custom domain specific language.
+This module creates pandas dataframes filled with fake data from the `Faker` package using an IPython magic function with custom domain specific language.
+
+## Installation
+`pip install faker-maker`
 
 ## Example usage
+
 ```
-%%fakedata seed=2, lang=jp_JP
+import fakermaker
+```
+Load the magic function
+```
+%load_ext fakermaker
+```
+In a separate cell, use the magic funcion `fakedata` along with a cell filled with only the "faker-maker language".
+```
+%%fakedata seed=0, lang=jp_JP
 # This will create 3 pandas dataframes: persons, purchases and comments
 persons {10}
 -----------------------
@@ -24,51 +36,26 @@ comments {2000} # This dataset will have 2000 rows (default = 99)
 text(max_nb_chars=280) as comment
 random_number(digits=5) as customer_number [2]
 ```
-See also example.ipynb
 
-## The `FakeDataFrameBuilder` class
-The heavy lifter for this assignment is named `FakeDataFrameBuilder`.  It resides in the file `faker_maker.py`.  It is designed to be used as the magic function `%%fakedata` which is demonstrated in this notebook.  Using it as a class instead of a magic function is also possible.  Create an instance of it as such:
-```
-from faker_maker import FakeDataFrameBuilder
-cls = FakeDataFrameBuilder(text)
-```
-Where `text` is the multi-line text blob containing one or more dataframe definitions.  The worker function that parses the text blob and builds the dataframes is `parse` and is called like this:
-```
-cls.parse()
-```
-Access the results within the variable `dataframes`.  Since multiple dataframes might be built, this object is a dictionary of each dataframe indexed by the name.
-```
-persons = cls.dataframes['persons']
-```
-Below are a few notes on the structure and operation that may differ from the request and provide more clarity.
+See also <a href='./example_usage.ipynb'>example_usage.ipynb</a>
 
-## An attempt at a more formal grammar
+## Faker-Maker Language
 
-```
-function_to_call  ::= <wordcharacters>
-parameters        ::= "" | "(" ( wordcharacters | number ) ")"
-as_name           ::= "" | "as" <whitespace> <wordcharacters>
-column_name       ::= as_name | function_to_call
-reference         ::= "" |  "[" number1, number2 "]"
-unique_mark       ::= "" | "*"
-column_definition ::= <function_to_call> <parameters> <whitespace> \
-                      <as_name> <whitespace> <reference> <unique_mark>
-df_sep            ::= "--" ("-"*)
-df_definition     ::= <wordcharacters> <newline> <df_sep> <newline> \
-                      (<column_definition>*) <newline> <newline>
-language_spec     ::= <def_definition>*
-```
-Source: Prof. Christopher Brooks (brooksch@umich.edu)
+- `#` - Everything after `#` will be considered a comment and thus ignored.  *optional*
+- *name* - Name of the Pandas Dataframe to create *required*
+ - `{n}` - Where `n` is the number of rows in the Dataframe.  [Default=99]  *optional*
+ - `#` - Everything after `#` will be considered a comment and thus ignored.  *optional*
+- `--` - Header/Details divider.  Two or more `-` *required*
+- `column_name` - Name of the column to add to the Pandas Dataframe. One field per line.  At least one required.  Name must match a valid `Faker` function.  See <a href='https://faker.readthedocs.io/en/master/'>Faker Documentation</a> for more details.  Column name will be the same as the function name unless you use the `as` keyword. *required*
+ - `(params)` - Additional Parameters to pass the `Faker` function.  Requires key-value pairs. Read more below. *optional*
+ - `*` - Requires each row in the dataframe to have a unique value for this column.  Read more below.  *optional*
+ - ` as `*alias*  - Column name override. *optional*
+ - `[i,j,...]` - Define references (i.e. parent/child relationship) between multiple Pandas Dataframes.  Read more below.  *optional*
+ - `#` - Everything after `#` will be considered a comment and thus ignored.  *optional*
+- `\n` - An additional new-line is required between dataframes.  Not required for last.  *required*
 
-### Table Definitions
-The table defintion has been expanded from the request to include a row count.  The default remains `99` records if no row is provided but now a new value can be specified using the special syntax ` {#}` after the table name.  For example: 
+Initial version created by Prof. Christopher Brooks (brooksch@umich.edu) and improved by package author Nicholas Miller.
 
-```
-purchases {30}
---------------
-```
-
-If tables are to have parent-child relationships and linked by a reference (see below), then the parent defintion should be provided first and the children after.
 
 ### Comments
 The domain specific language invented for this problem was expanded to support comments similar to python using a `#`.  Comments are not supported throughout.  Examples where comments can be added:
@@ -93,8 +80,10 @@ All parameters must define the varable they are referencing in the parameter lis
 random_number(digits=5) as customer_number
 ```
 
-### References
-This was expanded to allow for a comma delimited list of references and is demonstrated below.  The purpose is in the case that you want to drill down into a narrower and narrower set of values.  In the example below, not all persons will have purchases and not all purchases will have comments.  But, all comments should have one or more purchases and all purchases should have one person (since customer_number is unique on persons).  Here's how this would look:
+### References (i.e. Parent/Child Relationship)
+If tables are to have parent-child relationships and linked by a reference, then the parent defintion should be provided first and the children after.  See the example.
+
+This allows for a single refernce or a comma delimited list of references and is demonstrated below.  The purpose is in the case that you want to drill down into a narrower and narrower set of values.  In the example below, not all persons will have purchases and not all purchases will have comments.  But, all comments should have one or more purchases and all purchases should have one person (since customer_number is unique on persons).  Here's how this would look:
 
 ```
 persons
@@ -133,5 +122,5 @@ The seed can now be set on the magic function call line using the syntax `seed=0
 ### Language
 The language can also be defined on the magic function line using the syntax `lang=jp_JP`.
  
-### Conclusion
-This was created by Nicholas Miller (nmill@umich.edu) from designs provided above by Prof. Christopher Brooks (brooksch@umich.edu).  Submitted 2020-09-23.
+### Notes
+This was created by Nicholas Miller (miller.nicholas.a@gmail.com) based on specifications from Prof. Christopher Brooks (brooksch@umich.edu).
