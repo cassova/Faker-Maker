@@ -1,4 +1,4 @@
-# Author: Nicholas Miller (nmill@umich.edu)
+# Author: Nicholas Miller (miller.nicholas.a@gmail.com)
 # Created: 2020-09-23
 
 from IPython.core.magic import (Magics, magics_class, register_cell_magic,
