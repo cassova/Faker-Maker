@@ -43,15 +43,15 @@ See also <a href='./example_usage.ipynb'>example_usage.ipynb</a>
 
 - `#` - Everything after `#` will be considered a comment and thus ignored.  *optional*
 - *name* - Name of the Pandas Dataframe to create *required*
- - `{n}` - Where `n` is the number of rows in the Dataframe.  [Default=99]  *optional*
- - `#` - Everything after `#` will be considered a comment and thus ignored.  *optional*
+  - `{n}` - Where `n` is the number of rows in the Dataframe.  [Default=99]  *optional*
+  - `#` - Everything after `#` will be considered a comment and thus ignored.  *optional*
 - `--` - Header/Details divider.  Two or more `-` *required*
 - `column_name` - Name of the column to add to the Pandas Dataframe. One field per line.  At least one required.  Name must match a valid `Faker` function.  See <a href='https://faker.readthedocs.io/en/master/'>Faker Documentation</a> for more details.  Column name will be the same as the function name unless you use the `as` keyword. *required*
- - `(params)` - Additional Parameters to pass the `Faker` function.  Requires key-value pairs. Read more below. *optional*
- - `*` - Requires each row in the dataframe to have a unique value for this column.  Read more below.  *optional*
- - ` as `*alias*  - Column name override. *optional*
- - `[i,j,...]` - Define references (i.e. parent/child relationship) between multiple Pandas Dataframes.  Read more below.  *optional*
- - `#` - Everything after `#` will be considered a comment and thus ignored.  *optional*
+  - `(params)` - Additional Parameters to pass the `Faker` function.  Requires key-value pairs. Read more below. *optional*
+  - `*` - Requires each row in the dataframe to have a unique value for this column.  Read more below.  *optional*
+  - ` as `*alias*  - Column name override. *optional*
+  - `[i,j,...]` - Define references (i.e. parent/child relationship) between multiple Pandas Dataframes.  Read more below.  *optional*
+  - `#` - Everything after `#` will be considered a comment and thus ignored.  *optional*
 - `\n` - An additional new-line is required between dataframes.  Not required for last.  *required*
 
 Initial version created by Prof. Christopher Brooks (brooksch@umich.edu) and improved by package author Nicholas Miller.
