@@ -5,7 +5,7 @@ with open('README.md') as readme_file:
 
 setup_args = dict(
     name='fakermaker',
-    version='0.1.0',
+    version='0.1.2',
     description='Creates pandas dataframes containing fake data using a IPython magic function with custom domain specific language',
     long_description_content_type="text/markdown",
     long_description=README,

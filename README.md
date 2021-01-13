@@ -7,7 +7,11 @@ This module creates pandas dataframes filled with fake data from the `Faker` pac
 ## Example usage
 
 ```
-import faker-maker
+import fakermaker
+```
+Load the magic function
+```
+%load_ext fakermaker
 ```
 In a separate cell, use the magic funcion `fakedata` along with a cell filled with only the "faker-maker language".
 ```
