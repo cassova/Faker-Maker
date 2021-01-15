@@ -1,5 +1,6 @@
 # Author: Nicholas Miller (miller.nicholas.a@gmail.com)
 # Created: 2020-09-23
+# https://github.com/cassova/Faker-Maker
 
 from IPython.core.magic import (Magics, magics_class, register_cell_magic,
                                 line_cell_magic, needs_local_scope)

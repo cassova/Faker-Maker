@@ -14,7 +14,7 @@ setup_args = dict(
     author='Nicholas Miller',
     author_email='miller.nicholas.a@gmail.com',
     keywords=['FakerMaker', 'faker', 'fake data', 'generator', 'maker'],
-    url='https://github.com/ncthuc/elastictools',
+    url='https://github.com/cassova/Faker-Maker',
     download_url='https://github.com/cassova/Faker-Maker'
 )
 
