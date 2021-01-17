@@ -6,16 +6,16 @@ This module creates pandas dataframes filled with fake data from the `Faker` pac
 
 ## Example usage
 
-```
+```Python
 import fakermaker
 ```
 Load the magic function
-```
+```Python
 %load_ext fakermaker
 ```
-In a separate cell, use the magic funcion `fakedata` along with a cell filled with only the "faker-maker language".
-```
-%%fakedata seed=0, lang=jp_JP
+In a separate cell, use the magic funcion `fakermaker` along with a cell filled with only the "faker-maker language".
+```Python
+%%fakermaker seed=0, lang=jp_JP
 # This will create 3 pandas dataframes: persons, purchases and comments
 persons {10}
 -----------------------
@@ -76,7 +76,7 @@ For this implementation, I found that the latter is more flexible in that it sat
  
 ### Parameters
 All parameters must define the varable they are referencing in the parameter list.  This is necessary for how the parameter dictionary structure is built.  It's also good practice because it makes the parameter purpose much clearer.  For example:
-```
+```Python
 random_number(digits=5) as customer_number
 ```
 
@@ -85,7 +85,7 @@ If tables are to have parent-child relationships and linked by a reference, then
 
 This allows for a single refernce or a comma delimited list of references and is demonstrated below.  The purpose is in the case that you want to drill down into a narrower and narrower set of values.  In the example below, not all persons will have purchases and not all purchases will have comments.  But, all comments should have one or more purchases and all purchases should have one person (since customer_number is unique on persons).  Here's how this would look:
 
-```
+```Python
 persons
 -------
 random_number(digits=5) as customer_number [1]*

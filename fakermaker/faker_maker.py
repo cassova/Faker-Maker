@@ -263,7 +263,7 @@ class FakeDataFrameBuilder():
 class AutoMagics(Magics):
     @needs_local_scope
     @line_cell_magic
-    def fakedata(self, line, cell, local_ns=None):
+    def fakermaker(self, line, cell, local_ns=None):
         params = {}
         if len(line) > 0:
             params = self.__get_magic_params(line)
