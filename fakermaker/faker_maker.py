@@ -65,7 +65,7 @@ class FakeDataFrameBuilder():
                 try:
                     # Don't like how this is seeded:
                     #return self.dataframes[d[0]][d[1]].sample(n=size, random_state=self.__seed).to_list()
-                    return random.sample(self.dataframes[d[0]][d[1]].to_list(),size)
+                    return random.choices(self.dataframes[d[0]][d[1]].to_list(),k=size)
                 except:
                     pass
             # if we got here, we couldn't find a df with any reference values so just generate new values

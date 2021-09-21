@@ -5,7 +5,7 @@ with open('README.md') as readme_file:
 
 setup_args = dict(
     name='fakermaker',
-    version='0.2.0',
+    version='0.3.0',
     description='Creates pandas dataframes containing fake data using a IPython magic function with custom domain specific language',
     long_description_content_type="text/markdown",
     long_description=README,
@@ -13,7 +13,7 @@ setup_args = dict(
     packages=find_packages(),
     author='Nicholas Miller',
     author_email='miller.nicholas.a@gmail.com',
-    keywords=['FakerMaker', 'faker', 'fake data', 'generator', 'maker'],
+    keywords=['FakerMaker', 'faker', 'fake', 'data', 'generator', 'maker', 'creator', 'psuedo', 'random', 'test', 'sample'],
     url='https://github.com/cassova/Faker-Maker',
     download_url='https://github.com/cassova/Faker-Maker'
 )
