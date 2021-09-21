@@ -15,7 +15,7 @@ Load the magic function
 ```
 In a separate cell, use the magic funcion `fakermaker` along with a cell filled with only the "faker-maker language".
 ```Python
-%%fakermaker seed=0, lang=jp_JP
+%%fakermaker seed=0, lang=en_US
 # This will create 3 pandas dataframes: persons, purchases and comments
 persons {10}
 -----------------------
